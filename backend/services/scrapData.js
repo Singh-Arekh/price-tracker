@@ -20,8 +20,14 @@ export const scrapAmazonPrice = async (url) => {
       const image = document.querySelector("#landingImage")?.src;
       const priceElement = document.querySelector(".a-price .a-offscreen");
       const price = priceElement ? parseFloat(priceElement.innerText.replace(/[₹$,]/g, "")) : null;
-
-      return { title, image, price };
+      const discount = document.querySelector(".savingsPercentage")?.innerText.trim();
+      const reviews = document.querySelector(".a-icon-alt")?.innerText.trim();
+      const reviewCount = document.querySelector("#acrCustomerReviewText")?.innerText.trim();
+      const availability = document.querySelector("#availability span.a-declarative")?.innerText.trim();
+      const description = document.querySelector("#feature-bullets")?.innerText.trim();
+      const categories = Array.from(document.querySelectorAll(".a-unordered-list.a-horizontal.a-size-small li a"))
+        .map(a => a.innerText.trim());
+      return { title, image, price,discount, reviews, reviewCount, availability, description, categories };
     });
 
     console.log("Scraped data:", result);
