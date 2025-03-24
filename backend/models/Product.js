@@ -40,6 +40,9 @@ const ProductSchema = new mongoose.Schema(
         },
       },
     ],
+    discount: {
+      type: String
+    },
     lastChecked: {
       type: Date,
       default: Date.now,
